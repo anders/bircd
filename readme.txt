@@ -1,4 +1,4 @@
-beware ircd 1.6.2 source code
+beware ircd 1.6.2.1 source code
 
 this is tested to compile on Borland delphi 3, 6, 2010, and on freepascal 2.2.2
 
