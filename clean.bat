@@ -1,0 +1,11 @@
+del *.~pa
+del dcu\*.dcu
+del bircd.exe
+del bircd
+del *.ppu
+del *.o
+del *.ppw
+del *.ow
+del bcreationdate.exe
+del mkpasswd
+del bcreationdate

@@ -1,0 +1,2 @@
+kill -SIGINT `cat bircd.pid`
+

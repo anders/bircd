@@ -1,0 +1,14 @@
+#!/bin/sh
+rm *.~pa
+rm dcu\*.dcu
+rm bircd.exe
+rm bircd
+rm *.ppu
+rm *.o
+rm *.ppw
+rm *.ow
+rm bcreationdate.exe
+rm bcreationdate
+rm mkpasswd.exe
+rm mkpasswd
+
