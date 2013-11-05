@@ -1,0 +1,20 @@
+syntax: glob
+bircd
+mkpasswd
+bcreationdate
+dcu
+obj
+*.exe
+*.dcu
+*.ppu
+*.drc
+*.orig
+*.rej
+*.ini
+*.pid
+*.or
+*~
+bircd.ini
+ircd.conf
+stdout.txt
+._*
