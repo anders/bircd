@@ -1,4 +1,4 @@
-{$ifndef win32}
+{$ifndef mswindows}
   {$define noicon}
   {$define nosignal}
   {$define nodnsapi}
@@ -6,7 +6,7 @@
 {$endif}
 
 
-{$ifdef win32}
+{$ifdef mswindows}
   {$ifdef console}
   {$apptype console}
   {$else}

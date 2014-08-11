@@ -1,12 +1,27 @@
-beware ircd 1.6.2.1 source code
+beware ircd 1.6.3 source code
 
-this is tested to compile on Borland delphi 3, 6, 2010, and on freepascal 2.2.2
+this is tested to compile on Borland delphi 6, delphi xe5, and on freepascal 2.4.0
 
-tested on windows XP, linux (debian) and mac OS X
+tested on windows 7, linux (debian) and mac OS X
+
 
 homepage: http://ircd.bircd.org/
 
 this project uses lcore: http://www.lcore.org/
+
+
+
+recommended way to compile on freepascal on linux/*nix:
+
+make sure lcore is in the directory where "compile" expects it (../libs/lcore), then run compile.
+
+recommended way to compile in delphi on windows:
+
+make sure lcore is where the projects expect it (..\libs\lcore) or edit the project settings.
+
+open and compile bcreationdate.dpr and run bcreationdate.exe. then, open and compile bircd.dpr. also open and compile mkpasswd.dpr.
+
+
 
 there are a number of conditional defines which for example make it easy to disable something at compile time, 
 and this way get a smaller exe file which has only what you need. their use other than the defaults is untested and not guaranteed to do something useful.

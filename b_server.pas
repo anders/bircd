@@ -453,6 +453,9 @@ begin
   {new link time is already known: its ts2 if handshake, irctime if accepting}
   b := cptr.socknum;
   a := servercollision(p10num,parv[1],cptr,newlinkts,s);
+
+  if (a <> 0) then locnotice(SNO_NETWORK,'Incoming server connection '+parv[1]+' collision: '+s);
+
   ghosted := a = 4;
   if not connectionlist[b].open then exit;
 

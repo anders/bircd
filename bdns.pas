@@ -44,7 +44,7 @@ procedure dnstimeout(num:integer);
 implementation
 
 uses
-  {$ifdef win32}winsock,{$endif}lsocket,
+  {$ifdef mswindows}winsock,{$endif}lsocket,
   bircdunit,bconfig,bstuff,bsend,bwelcome,bsock,bdnscache,bconsts,unitbanmask,
   bvaliddef,dnsasync,binipstuff;
 

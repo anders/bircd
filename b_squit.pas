@@ -28,7 +28,7 @@ procedure m_squit(cptr,sptr:tuser;parc:integer;parv:pparams);
 implementation
 
 uses
-  {$ifdef win32}wcore,{$else}lcore,{$endif}
+  {$ifdef mswindows}wcore,{$else}lcore,{$endif}
   bconfig,breplies,bsend,btime,bserver,bparse,b_gline,blinklist,
   bircdunit,bconsts,bprivs,pgtypes;
 

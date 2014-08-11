@@ -34,7 +34,7 @@ procedure timehandler;
 implementation
 
 uses
-  {$ifdef win32}winsock,{$endif}lcore,lsocket,
+  {$ifdef mswindows}winsock,{$endif}lcore,lsocket,
   bircdunit,bconfig,bstuff,bsend,bwelcome,bsock,bdnscache,bconsts,bdns,sysutils,
   btime,binipstuff;
 

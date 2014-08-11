@@ -51,18 +51,21 @@ begin
   {invalidate motd cache}
 end;
 
-{yyyy-m-d h:mm}
+{yyyy-mm-dd hh:mm}
 function dosdate(i:integer):bytestring;
 var
   dt:tdatetime;
-  year,month,day:word;
+  y,m,d,h,min,sec,ms:word;
   a:integer;
 begin
   dt := FileDateToDateTime(i);
   a := trunc(frac(dt)*1440);
-  decodedate(dt,year,month,day);
-  result := inttostr(year)+'-'+inttostr(month)+'-'+inttostr(day)+' '+
-  inttostr(a div 60)+':'+inttostr((a div 10) mod 6)+inttostr(a mod 10);
+  decodedate(dt,y,m,d);
+  decodetime(dt,h,min,sec,ms);
+  result := inttostr(y)+'-'+inttostr(m div 10)+inttostr(m mod 10)+'-'+
+  inttostr(d div 10)+inttostr(d mod 10)+' '+inttostr(h div 10)+
+  inttostr(h mod 10)+':'+inttostr(min div 10)+inttostr(min mod 10)+':'+
+  inttostr(sec div 10)+inttostr(sec mod 10);
 end;
 
 {

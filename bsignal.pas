@@ -26,7 +26,7 @@ interface
 {$include bircd.inc}
 
 uses
-{$ifdef win32}
+{$ifdef mswindows}
   winsock,
 {$endif}
   lsocket,binipstuff,pgtypes;

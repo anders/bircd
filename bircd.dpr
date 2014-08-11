@@ -24,7 +24,7 @@ program bircd;
 
 uses
   {$ifndef nowinnt}bwinnt,{$endif}
-  {$ifndef win32}baseunix,bunixsignals,unitfork,{$endif}
+  {$ifndef mswindows}baseunix,bunixsignals,unitfork,{$endif}
   {$ifndef nosignal}bsignal,{$endif}
   bstuff,bircdunit,bparse,bconfig,btime,sysutils;
 
@@ -33,7 +33,12 @@ uses
 {$endif}
 
 begin
-  decimalseparator := '.'; {override local differences}
+ {$ifndef fpc}
+ {$IF CompilerVersion >= 26}formatsettings.{$ifend}
+ {$endif}
+
+ decimalseparator := '.';         {override local differences}
+
   getpath; {chdir to bircd.exe directory}
 
   getparams;

@@ -1,12 +1,16 @@
 #!/bin/sh
-rm *.~pa
-rm dcu\*.dcu
+rm *.~*
+rm dcu/*.dcu
 rm bircd.exe
 rm bircd
+rm bircd.map
 rm *.ppu
 rm *.o
 rm *.ppw
 rm *.ow
+rm stdout.txt
+rm bircd.pid
+rm bcreationdate.pas
 rm bcreationdate.exe
 rm bcreationdate
 rm mkpasswd.exe

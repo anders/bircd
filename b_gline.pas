@@ -266,6 +266,7 @@ begin
   ' for '+mask+', expiring at '+inttostr(expire)+': '+reason);
 
   {make the G-line}
+  banmaskmake(@bm,mask);
 
   {check if new g-line is overlapped}
   if not flag_isset(flags,glineflag_badchan) then begin

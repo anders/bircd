@@ -59,7 +59,6 @@ begin
   sendreply(sptr,RPL_INFO,':written by Bas Steendijk');
   sendreply(sptr,RPL_INFO,':http://ircd.bircd.org/');
   sendreply(sptr,RPL_INFO,':ircd@bircd.org');
-  sendreply(sptr,RPL_INFO,':http://bewareircd.sf.net');
   sendreply(sptr,RPL_INFO,':'+platformstr+' version');
 
   sendreply(sptr,RPL_ENDOFINFO,getrpl0(RPL_ENDOFINFO));

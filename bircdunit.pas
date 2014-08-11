@@ -96,9 +96,10 @@ end;
 procedure conwrite(const s:bytestring);
 var
   t:textfile;
+  a:integer;
 begin
   (*if false
-  {$ifdef win32}
+  {$ifdef mswindows}
   or (not isconsole)
   {$endif}
   {$ifndef nowinnt}
@@ -109,7 +110,10 @@ begin
   {$endif}
   then*)
   begin
-    assignfile(t,'stdout.txt');
+
+    assignfile(t,
+    //getprogramdir+dirsep+
+    'stdout.txt');
     filemode := 2;
     if (conwritten <> 0) then begin
       {$i-}append(t);{$i+}
@@ -118,9 +122,28 @@ begin
       {$i-}rewrite(t);{$i+}
       if ioresult <> 0 then exit;
     end;
-    if (unixtime - conwritten) > 10 then writeln(t,timestring(unixtime));
-    if s <> '' then writeln(t,'   ',s);
+
+   try //open file
+
+    if (unixtime - conwritten) > 10 then begin
+      {$i-}writeln(t,timestring(unixtime));{$i+}
+      a := ioresult;
+
+      if (a <> 0) then begin
+        if (serverisrunning) then wallops('IO error while writing to log: '+inttostr(a)+','+expandfilename('.')+','+s);
+        exit;
+      end;
+    end;
+    if s <> '' then begin
+      {$i-}writeln(t,'   ',s);{$i+}
+      a := ioresult;
+      if (a <> 0) then begin
+        if (serverisrunning) then wallops('IO error while writing to log: '+inttostr(a)+','+expandfilename('.')+','+s);
+      end;
+    end;
+   finally
     closefile(t);
+   end;
     conwritten := unixtimeint;
     if conwritten = 0 then conwritten := 1;
   end(* else begin
@@ -358,7 +381,7 @@ var
   s:bytestring;
 begin
   s := paramstr(0);
-  {$ifdef win32}
+  {$ifdef mswindows}
   winexec(@s[1],0);
   {$else}
   execl(s);
@@ -415,7 +438,7 @@ begin
 
   btime.timehandler;
   (*
-  {$ifndef win32}
+  {$ifndef mswindows}
   writeln(lcoretestcount);
   lcoretestcount := 0;
   {$endif}

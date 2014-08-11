@@ -818,7 +818,7 @@ begin
   case optiontable[num].typ of
       opt_int:result := inttostr(integer(optiontable[num].p^));
       opt_bool:result := inttostr(ord(boolean(optiontable[num].p^)));
-      opt_str:result := string(optiontable[num].p^);
+      opt_str:result := bytestring(optiontable[num].p^);
     end;
 end;
 
@@ -889,7 +889,7 @@ begin
             boolean(optiontable[a].p^) := true
           end;
           opt_str:begin
-            string(optiontable[a].p^) := sn;
+            bytestring(optiontable[a].p^) := sn;
           end;
         end;
         break;

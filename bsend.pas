@@ -94,7 +94,7 @@ var
 implementation
 
 uses
-  {$ifdef win32}winsock,{$endif}lcore,lsocket,
+  {$ifdef mswindows}winsock,{$endif}lcore,lsocket,
   breplies,bcmds,bircdunit,bsock,blinklist,bserver,b_wallops,b_desynch,bconfig;
 
 function sprefix(us:tuser;const cmd:bytestring):bytestring;

@@ -35,7 +35,7 @@ interface
 
 uses
   dnsasync,
-  {$ifdef win32}winsock,{$endif}lcore,lsocket,
+  {$ifdef mswindows}winsock,{$endif}lcore,lsocket,
   classes,buser,bconfig,bcmds,blargenum,bipcheck,bconsts,blinklist,binipstuff,
   unitbanmask,pgtypes;
 
@@ -243,7 +243,7 @@ function makelocaladdr(const s:bytestring):bytestring;
 begin
   if (s= '') or (s = '*') then result := '' else result := s;
 
-//  {$ifdef win32}
+//  {$ifdef mswindows}
 //  if result = '' then result := '0.0.0.0';
 //  {$endif}
 
@@ -281,7 +281,7 @@ begin
   end;
   listenlist[b] := listenobject.create;
   listenlist[b].sock := twsocket.create(nil);
-  listenlist[b].sock.tag := integer(listenlist[b]);
+  listenlist[b].sock.tag := taddrint(listenlist[b]);
 
   with listenlist[b] do begin
     try
@@ -418,7 +418,10 @@ begin
 
   {the K/G-line check for the case of CIDR G-lines}
   if glinebinmatch(us,s) then begin
-    sendreply(us,ERR_YOUREBANNEDCREEP,':*** '+s+'.');
+    //sendreply(us,ERR_YOUREBANNEDCREEP,':*** '+s+'.');
+
+    //special case, because the user has no name set
+    sendto_one(us,cprefix(me,cmdstr(ERR_YOUREBANNEDCREEP))+'*'+' '+':*** '+s+'.');
     us.error := 'K-lined';
     us.destroy;
     exit;
@@ -454,7 +457,7 @@ goed := false;
     if (a <= b) then if (us.recvq[a] <> #13) and (us.recvq[a] <> #10) then inc(a);
     if a <= b then begin
 
-      s := pchar(copy(us.recvq,c,a-c));
+      s := pansichar(copy(us.recvq,c,a-c));
       {s := copy(us.recvq,c,a-c);} {- copy without null termination}
       d := a;
       us.recvofs := d;
@@ -529,7 +532,7 @@ begin
     if not isinitiated(us) then begin
 
       inc(connectionlist[us.socknum].receivecount,i);
-      if connectionlist[us.socknum].receivecount >= 512 then begin
+      if connectionlist[us.socknum].receivecount >= 1024 then begin
         us.error := floodreason;
         us.destroy;
         exit;
@@ -630,7 +633,7 @@ begin
   sock.dup(handle);
   sock.OnDataAvailable := sc.receivehandler;
 
-  {$ifdef win32}
+  {$ifdef mswindows}
   ipstrtobin(sock.getpeeraddr,ip);
   {$else}
   sock.getpeeraddrbin(ip);
@@ -725,7 +728,7 @@ begin
     us.from := us;
     us := connectionlist[socknum].user;
 
-    {$ifdef win32}
+    {$ifdef mswindows}
     ipstrtobin(sock.getpeeraddr,us.binip);
     {$else}
     sock.getpeeraddrbin(us.binip);

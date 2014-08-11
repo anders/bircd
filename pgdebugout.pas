@@ -30,7 +30,7 @@ var
   t : text;
 begin
   if (debugmode and DMConsole)<>0 then begin
-    {$ifdef win32}
+    {$ifdef mswindows}
       if isconsole then writeln(s);
     {$else}
       writeln(s);

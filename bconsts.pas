@@ -33,7 +33,7 @@ const
   maxsilence=15;
   unregtimeout=90; {timeout unregistered connections}
 
-  versionstr='beware1.6.2'
+  versionstr='beware1.6.3'
   {$ifdef bdebug}+'.debug' {$endif}
   ;
 
@@ -71,8 +71,9 @@ const
   TS_LAG_TIME=3600;
   {MAGIC_REMOTE_JOIN_TS=1270080000;}
 
-  {$ifdef win32}
-  platformstr = 'win32'
+  {$ifdef mswindows}
+  platformstr = 'win'
+    {$ifdef win64}+'64'{$else}+'32'{$endif}
   {$else}
   platformstr = 'unix'
   {$endif}
